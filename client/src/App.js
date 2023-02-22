@@ -1,10 +1,19 @@
 import React from "react";
 import "./App.css";
+import { Container } from "react-bootstrap";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <>
-      <h1>Welcome to my Shop!</h1>
+      <Header />
+      <main>
+        <Container>
+          <h1>Welcome to my Shop!</h1>
+        </Container>
+      </main>
+      <Footer />
     </>
   );
 };
