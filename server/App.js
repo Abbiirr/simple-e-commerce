@@ -1,9 +1,12 @@
-const express = require("express");
-const products = require("./data/products");
-const dotenv = require("dotenv");
-const path = require("path");
+import express from "express";
+import products from "./data/products.js";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import path from "path";
 
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({ path: path.resolve("../.env") });
+
+connectDB();
 
 const app = express();
 
