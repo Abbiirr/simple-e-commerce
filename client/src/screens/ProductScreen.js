@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Row,
   Col,
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../actions/productActions";
 
 const ProductScreen = ({ match }) => {
+  const history = useNavigate();
   const [qty, setQty] = useState(0);
 
   const { id } = useParams();
@@ -25,6 +26,11 @@ const ProductScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [dispatch, match]);
+
+  const addToCartHandler = () => {
+    console.log("add to cart");
+    history(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -102,6 +108,7 @@ const ProductScreen = ({ match }) => {
 
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className="btn-block"
                     type="button"
                     disabled={product.countInStock === 0}
