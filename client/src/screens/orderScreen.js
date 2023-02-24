@@ -11,7 +11,7 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
-import { createOrder } from "../actions/orderActions";
+
 import { listOrders } from "../actions/orderActions";
 
 const CheckoutScreen = () => {

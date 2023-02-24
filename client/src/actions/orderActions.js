@@ -7,7 +7,7 @@ import {
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAILURE,
 } from "../constants/orderConstants";
-
+import { getUserId } from "../utilities/utils";
 export const createOrder =
   (userId, products, totalPrice) => async (dispatch, getState) => {
     try {
@@ -45,7 +45,9 @@ export const listOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
 
-    const { data } = await axios.get("/api/orders");
+    const userId = getUserId();
+
+    const { data } = await axios.get(`api/orders/user/${userId}`);
 
     dispatch({
       type: ORDER_LIST_SUCCESS,

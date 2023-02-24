@@ -19,10 +19,6 @@ const CartScreen = ({ match }) => {
   const location = useLocation();
 
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
-  //   const qty = history({
-  //     pathname: "/cart",
-  //     search: "=",
-  //   });
 
   console.log(qty);
 
