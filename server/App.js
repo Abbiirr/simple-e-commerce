@@ -8,7 +8,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 import productRoutes from "./routes/productRoutes.js";
 
-dotenv.config({ path: path.resolve("../.env") });
+dotenv.config({ path: path.resolve("./.env") });
 
 connectDB();
 
