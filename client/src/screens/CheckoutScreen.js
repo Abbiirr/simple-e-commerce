@@ -6,7 +6,6 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -18,6 +17,7 @@ import {
   Form,
 } from "react-bootstrap";
 import { createOrder } from "../actions/orderActions";
+import { getUserId } from "../utilities/utils.js";
 
 const CheckoutScreen = () => {
   const navigate = useNavigate();
@@ -26,14 +26,6 @@ const CheckoutScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   console.log(cartItems);
-  const getUserId = () => {
-    let userId = localStorage.getItem("userId");
-    if (!userId) {
-      userId = uuid();
-      localStorage.setItem("userId", userId);
-    }
-    return userId;
-  };
   const orderHandler = () => {
     const totalCost = cartItems.reduce(
       (acc, item) => acc + item.price * item.qty,
