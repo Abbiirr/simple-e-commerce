@@ -11,8 +11,10 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
+import { createOrder } from "../actions/orderActions";
 
 const CheckoutScreen = () => {
+  const dispatch = useDispatch();
   let userId = localStorage.getItem("userId");
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -21,10 +23,19 @@ const CheckoutScreen = () => {
     userId = uuid();
     localStorage.setItem("userId", userId);
   }
+  const orderHandler = () => {
+    const totalCost = cartItems.reduce(
+      (acc, item) => acc + item.price * item.qty,
+      0
+    );
+
+    dispatch(createOrder(userId, cartItems, totalCost));
+    localStorage.removeItem("cartItems");
+  };
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>Your Order</h1>
         {cartItems.length === 0 ? (
           <h2>
             Your cart is empty<Link to="/"> Go Back</Link>
@@ -59,6 +70,16 @@ const CheckoutScreen = () => {
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+                onClick={orderHandler}
+              >
+                Confirm Order
+              </Button>
             </ListGroup.Item>
           </ListGroup>
         </Card>

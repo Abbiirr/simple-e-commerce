@@ -36,7 +36,7 @@ const CartScreen = ({ match }) => {
     if (id) {
       dispatch(addToCart(id, qty));
     }
-  }, [dispatch, id, qty]);
+  }, [dispatch, id, qty, cartItems]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
