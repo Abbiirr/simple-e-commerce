@@ -43,7 +43,7 @@ const CartScreen = ({ match }) => {
   };
 
   const checkoutHandler = () => {
-    history("/login?redirect=shipping");
+    history("/checkout");
   };
   return (
     <Row>
