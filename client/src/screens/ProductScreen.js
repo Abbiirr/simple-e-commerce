@@ -15,7 +15,7 @@ import { listProductDetails } from "../actions/productActions";
 
 const ProductScreen = ({ match }) => {
   const history = useNavigate();
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   const { id } = useParams();
   const dispatch = useDispatch();
