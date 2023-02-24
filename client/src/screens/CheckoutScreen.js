@@ -22,20 +22,24 @@ import { createOrder } from "../actions/orderActions";
 const CheckoutScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let userId = localStorage.getItem("userId");
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   console.log(cartItems);
-  if (!userId) {
-    userId = uuid();
-    localStorage.setItem("userId", userId);
-  }
+  const getUserId = () => {
+    let userId = localStorage.getItem("userId");
+    if (!userId) {
+      userId = uuid();
+      localStorage.setItem("userId", userId);
+    }
+    return userId;
+  };
   const orderHandler = () => {
     const totalCost = cartItems.reduce(
       (acc, item) => acc + item.price * item.qty,
       0
     );
-
+    const userId = getUserId();
     dispatch(createOrder(userId, cartItems, totalCost));
     localStorage.removeItem("cartItems");
     navigate("/orders");
