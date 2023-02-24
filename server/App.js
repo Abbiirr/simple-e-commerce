@@ -7,19 +7,21 @@ import path from "path";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config({ path: path.resolve("./.env") });
 
 connectDB();
 
 const app = express();
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
 app.use("/api/products", productRoutes);
-
+app.use("/api/orders", orderRoutes);
 app.use(notFound);
 
 app.use(errorHandler);
