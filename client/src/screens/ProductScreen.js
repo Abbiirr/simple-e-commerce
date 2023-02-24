@@ -18,6 +18,8 @@ const ProductScreen = ({ match }) => {
   const [qty, setQty] = useState(1);
 
   const { id } = useParams();
+  console.log("ID is " + id);
+  console.log("Type is " + typeof id);
   const dispatch = useDispatch();
 
   const productDetail = useSelector((state) => state.productDetail);
