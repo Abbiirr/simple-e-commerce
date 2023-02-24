@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,6 +20,7 @@ import {
 import { createOrder } from "../actions/orderActions";
 
 const CheckoutScreen = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   let userId = localStorage.getItem("userId");
   const cart = useSelector((state) => state.cart);
@@ -31,6 +38,7 @@ const CheckoutScreen = () => {
 
     dispatch(createOrder(userId, cartItems, totalCost));
     localStorage.removeItem("cartItems");
+    navigate("/orders");
   };
   return (
     <Row>

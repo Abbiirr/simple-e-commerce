@@ -7,11 +7,17 @@ import {
   productDetailReducer,
 } from "./reducers/productReducers.js";
 import { cartReducer } from "./reducers/cartReducers.js";
+import {
+  orderCreateReducer,
+  orderListReducer,
+} from "./reducers/orderReducers.js";
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetail: productDetailReducer,
   cart: cartReducer,
+  orderCreate: orderCreateReducer,
+  orderList: orderListReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem("cartItems")

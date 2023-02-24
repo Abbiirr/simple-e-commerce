@@ -5,9 +5,13 @@ import addOrder from "../controllers/orderController.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  res.send("All orders");
-});
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const orders = await Order.find({});
+    res.json(orders);
+  })
+);
 
 router.get(
   "/:id",
